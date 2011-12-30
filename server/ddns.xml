@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema1.xsd">
+	<Users>
+		<User>
+			<Username>thoeger</Username>
+			<Password>pwd</Password>
+		</User>
+	</Users>
+	<Domain>
+		<Domain name="cust1">Customer 1</Domain>
+	</Domain>
+	<Permissions>
+		<Permission user="thoeger" domain="cust1" />
+	</Permissions>
+</Configuration>
