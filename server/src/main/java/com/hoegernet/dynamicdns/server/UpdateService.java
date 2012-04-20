@@ -21,11 +21,11 @@ import com.hoegernet.dynamicdns.iface.UpdateRequest;
  */
 @WebService(targetNamespace = "http://www.hoegernet.com/ws/DynamicDNS", name = "UpdateService", serviceName = "UpdateService", portName = "UpdateService", endpointInterface = "com.hoegernet.dynamicdns.iface.IUpdateService")
 public class UpdateService implements IUpdateService {
-	
+
 	@Resource
 	private WebServiceContext webServiceContext;
-	
 
+	@Override
 	public void update(final String user, final String pwd, final UpdateRequest req) {
 		if (DataAccess.getInstance().checkUser(user, pwd) && DataAccess.getInstance().checkPermission(user, req.getHost())) {
 			String ip = req.getIp();
@@ -35,7 +35,8 @@ public class UpdateService implements IUpdateService {
 			DNSUpdater.update(req.getHost(), ip);
 		}
 	}
-	
+
+	@Override
 	public void update(final String user, final String pwd, final UpdateRequest[] req) {
 		if (DataAccess.getInstance().checkUser(user, pwd)) {
 			final String callerIP = this.getClientIP();
@@ -50,11 +51,13 @@ public class UpdateService implements IUpdateService {
 			}
 		}
 	}
-	
+
+	@Override
+	@SuppressWarnings("restriction")
 	public String getClientIP() {
 		final MessageContext messageContext = this.webServiceContext.getMessageContext();
-		final com.sun.net.httpserver.HttpExchange httpExchange = (com.sun.net.httpserver.HttpExchange) messageContext.get("com.sun.xml.internal.ws.http.exchange");
+		final com.sun.net.httpserver.HttpExchange httpExchange = (com.sun.net.httpserver.HttpExchange)messageContext.get("com.sun.xml.internal.ws.http.exchange");
 		return httpExchange.getRemoteAddress().getAddress().getHostAddress();
 	}
-	
+
 }
