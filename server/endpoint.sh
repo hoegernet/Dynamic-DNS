@@ -1,15 +1,15 @@
 #!/bin/bash
 
 d_start() {
-    java -jar com.hoegernet.dynamicdns.server_1.0.0.jar start &
+    java -jar com.hoegernet.dynamicdns.server_@VERSION@.jar start &
 }
 
 d_stop() {
-    java -jar com.hoegernet.dynamicdns.server_1.0.0.jar stop
+    java -jar com.hoegernet.dynamicdns.server_@VERSION@.jar stop
 }
 
 d_config() {
-    java -jar com.hoegernet.dynamicdns.server_1.0.0.jar config
+    java -jar com.hoegernet.dynamicdns.server_@VERSION@.jar config
 }
 
 d_log() {
